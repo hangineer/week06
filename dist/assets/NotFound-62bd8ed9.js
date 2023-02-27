@@ -1,0 +1,1 @@
+import{_ as s,R as r,r as e,o as a,c,a as o,w as _,F as u,d as l,b as p}from"./index-ac0afc63.js";const d={components:{RouterView:r}},i=l("h3",null,"這是404頁面",-1);function m(f,V,w,x,h,k){const t=e("router-link"),n=e("RouterView");return a(),c(u,null,[i,o(t,{to:"/"},{default:_(()=>[p("回到首頁")]),_:1}),o(n)],64)}const R=s(d,[["render",m]]);export{R as default};
