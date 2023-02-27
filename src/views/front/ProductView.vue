@@ -18,7 +18,6 @@ export default {
       this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/product/${id}`)
         .then(res => {
           this.product = res.data.product
-        //   console.log(res)
         })
     }
   },

@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/admin',
-    component: () => import('../views/adminLayout.vue'),
+    component: () => import('../views/AdminLayout.vue'),
     children: [
       {
         path: 'products',
@@ -48,8 +48,12 @@ const routes = [
   {
     path: '/login',
     component: () => import('../views/front/LoginView.vue')
+  },
+  // 404頁面
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFound.vue')
   }
-
 ]
 
 const router = createRouter({
@@ -57,5 +61,15 @@ const router = createRouter({
   linkActiveClass: 'active',
   routes
 })
-
+router.beforeEach(async (to, from) => {
+  // if (
+  //   // make sure the user is authenticated
+  //   !isAuthenticated &&
+  //   // ❗️ Avoid an infinite redirect
+  //   to.path !== 'Login'
+  // ) {
+  //   // redirect the user to the login page
+  //   return { path: '/login' }
+  // }
+})
 export default router

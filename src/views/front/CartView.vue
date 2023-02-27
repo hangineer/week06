@@ -7,6 +7,7 @@
               <th>品名</th>
               <th style="width: 150px">數量/單位</th>
               <th>單價</th>
+              <th>小計</th>
             </tr>
           </thead>
           <tbody>
@@ -34,20 +35,28 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-end">
-                  <small v-if="cart.final_total !== cart.total" class="text-success">折扣價：</small>
-                  {{ item.final_total }}
+                <td>
+                  <div>
+                    <div class="mb-3">
+                      <span>{{ item.product.price }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="mb-3">
+                    <span class="text-success">{{ item.product.price * item.qty }}</span>
+                  </div>
                 </td>
               </tr>
             </template>
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="3" class="text-end">總計</td>
-              <td class="text-end">{{ cart.total }}</td>
+              <td colspan="4" class="text-end">總計</td>
+              <td class="text-end text-danger">{{ cart.total }}</td>
             </tr>
             <tr v-if="cart.final_total !== cart.total">
-              <td colspan="3" class="text-end text-success">折扣價</td>
+              <td colspan="4" class="text-end text-success">折扣價</td>
               <td class="text-end text-success">{{ cart.final_total }}</td>
             </tr>
           </tfoot>

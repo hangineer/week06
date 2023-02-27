@@ -7,7 +7,7 @@
                 <td><img :src="product.imageUrl" :alt="product.title" width="200"></td>
                 <td>
                     <RouterLink class="btn btn-outline-secondary" :to="`/product/${product.id}`">查看產品</RouterLink>
-                    <button type="button" class="btn btn-outline-primary ms-2" @click="addToCart(product.id)">加入購物車</button>
+                    <button type="button" class="btn btn-outline-primary ms-2" @click="addToCart(product.id)" :disabled="isDisabled">加入購物車</button>
                 </td>
             </tr>
         </tbody>
@@ -23,7 +23,8 @@ const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env
 export default {
   data () {
     return {
-      products: []
+      products: [],
+      isDisabled: false
     }
   },
   components: {
@@ -33,7 +34,6 @@ export default {
     getProducts () {
       this.$http.get(`${VITE_APP_URL}/api/${VITE_APP_PATH}/products/all`)
         .then(res => {
-          console.log(res)
           this.products = res.data.products
         })
     },
@@ -42,9 +42,11 @@ export default {
         product_id: id,
         qty: 1
       }
+      this.isDisabled = true
       this.$http.post(`${VITE_APP_URL}/api/${VITE_APP_PATH}/cart`, { data })
         .then(res => {
           alert(res.data.message)
+          this.isDisabled = false
         })
     }
   },

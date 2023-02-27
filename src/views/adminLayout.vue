@@ -28,23 +28,25 @@ export default {
       })
       this.$router.push('/login')
     },
-    checkIsAdmin () {
-      this.$http.post(`${VITE_APP_URL}/api/user/check`)
+    async checkIsAdmin () {
+      await this.$http.post(`${VITE_APP_URL}/api/user/check`)
         .then(res => {
-          Swal.fire({
-            icon: 'success',
-            title: '登入及驗證成功',
-            showConfirmButton: true,
-            timer: 2000
-          })
-          console.log('res', res)
           if (!res.data.success) {
+            Swal.fire({
+              icon: 'error',
+              title: '登入及驗證失敗',
+              showConfirmButton: true,
+              timer: 1000
+            })
             this.$router.push('/login')
+          } else {
+            Swal.fire({
+              icon: 'success',
+              title: '登入及驗證成功',
+              showConfirmButton: true,
+              timer: 1000
+            })
           }
-        })
-        .catch(err => {
-          console.dir(err)
-          window.location.href = 'index.html'
         })
     }
   },
