@@ -17,7 +17,7 @@ echo > .nojekyll
 # echo 'www.example.com' > CNAME
 
 # git init
-git checkout -B main
+git checkout -B master
 git add -A
 git commit -m 'deploy'
 
@@ -25,6 +25,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:hangineer/hangineer.github.io.git master
 
 # 如果你要部署在 https://hangineer.github.io/vite-deploy-practice
-git push -f https://github.com/hangineer/week06.git main:gh-pages
+git push -f https://github.com/hangineer/week06.git master:gh-pages
 
 cd -
